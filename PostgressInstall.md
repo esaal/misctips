@@ -1,18 +1,14 @@
-Copilot, 20241127
+Copilot with modifications, 20241127
 
 To install and manage multiple versions of PostgreSQL on a Linux system, you have a few options. Here are two common methods:
 
 ### Method 1: Using `update-alternatives`
 1. **Add the PostgreSQL Repository**:
-   ```bash
-   sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
-   wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-   sudo apt-get update
-   ```
+   [PostgresqlSetup.md](PostgresqlSetup.md)
 
 2. **Install Multiple PostgreSQL Versions**:
    ```bash
-   sudo apt-get install postgresql-12 postgresql-13 postgresql-14
+   sudo apt install postgresql-12 postgresql-13 postgresql-14
    ```
 
 3. **Set Up Alternatives for `pg_dump`**:
@@ -30,7 +26,7 @@ To install and manage multiple versions of PostgreSQL on a Linux system, you hav
 ### Method 2: Using `pgenv`
 1. **Install Required Libraries**:
    ```bash
-   sudo apt-get install lib32readline8 libreadline-gplv2-dev lib32tinfo6 libc6-i386 libtinfo-dev
+   sudo apt install lib32readline8 libreadline-gplv2-dev lib32tinfo6 libc6-i386 libtinfo-dev
    ```
 
 2. **Install `pgenv`**:
