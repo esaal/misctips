@@ -6,8 +6,10 @@ see: https://www.howtoforge.com/how-to-install-postgresql-and-pgadmin-tool-on-de
 Ubuntu 24:
 see: https://absprog.com/post/postgresql17-pgadmin-ubuntu24.04
 
-- install postgresql
-- start service
-- set admin password
-- create user with password
-- install pgadmin
+- install certificates,
+- add the postgresql repository,
+- install postgresql-<version>,
+- start service,
+- set admin password,
+- create user with password,
+- install pgadmin,
