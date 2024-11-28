@@ -37,6 +37,46 @@ Replace `<commit_hash>` with the actual hash of the commit you want to revert to
 git push --force origin master
 ```
 The `--force` flag ensures that the remote branch is updated even if it's behind the local branch.
+
+
+To remove an old commit from a branch before merging it into the main branch in Git, you can use the `git rebase` command. Here’s a step-by-step guide:
+
+## Interactive `git rebase`
+1. **Identify the commit** you want to remove by running:
+```bash
+git log
+```
+This will show you the commit history. Note the hash of the commit you want to remove.
+
+2. **Start an interactive rebase** from a point before the commit you want to remove:
+```bash
+git rebase -i <commit-hash>^
+```
+Replace `<commit-hash>` with the hash of the commit just before the one you want to remove.
+
+3. In the interactive rebase screen, you will see a list of commits. **Delete the line** corresponding to the commit you want to remove.
+   
+4. **Save and close** the editor to apply the rebase. This will remove the specified commit from the branch.
+### Force Push (if necessary)
+If the branch has already been pushed to a remote repository, you will need to force push the changes:
+```bash
+git push --force origin <branch-name>
+```
+### Example
+Let's say your commit history looks like this:
+```
+commit 1234567 (HEAD -> feature-branch)
+commit abcdef0
+commit 789abcd
+commit 456efgh
+```
+If you want to remove `commit 789abcd`, you would run:
+```bash
+git rebase -i 456efgh
+```
+In the interactive rebase screen, delete the line with `commit 789abcd`, save, and close the editor.
+This method will help you clean up your branch before merging it into the main branch.
+
 ## Submodule add and init:
 * https://www.atlassian.com/git/tutorials/git-submodule
 - add the submodule with a specific name and branch:
