@@ -16,8 +16,13 @@ docker build -t devimage -f Dockerfile .
 ```
 
 ## Create and Run container named "devcli"
+### Without network:
 ```bash
 docker run -it -v /home/<username>/GitHub:/home/dev --name devcli -d devimage:latest
+```
+### With network:
+```bash
+docker run -it -v /home/<username>/GitHub:/home/dev --network=host --name devcli -d devimage:latest
 ```
 
 ## Execute bash from container "devcli"
