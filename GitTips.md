@@ -1,13 +1,18 @@
 # Git tips
-Copilot with modifications, 20241128
+Copilot with modifications, 20241128, 20250117
 
 ## Cheat sheet:
 * https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet
 
-## Discard Untracked Changes:
+## Clean untracked files and directories in the main repository:
 Use the git clean command to remove untracked files and directories:
 ```bash
-git clean -fd
+git clean -fdx
+```
+## Clean untracked files and directories in all submodules recursively:
+Use the git clean command to remove untracked files and directories:
+```bash
+git submodule foreach --recursive git clean -fdx
 ```
 The -f flag forces the clean operation, and the -d flag removes untracked directories as well.
 ## Reset local master:
@@ -24,6 +29,12 @@ git reset --hard origin/main
 ```bash
 git checkout -f main
 ```
+4. Reset all your submodules recursively:
+git submodule foreach --recursive git reset --hard
+
+5. Update submodules to the latest commit in the main repository:
+git submodule update --init --recursive
+
 This sequence ensures that your local main branch is exactly the same as the remote main branch, discarding any local changes that might conflict.
 ## Reset remote master to <commit_hash>:
 1. First, reset the `master` branch to the desired commit locally using:
@@ -110,6 +121,14 @@ git rm -f path/to/submodule
 rm -rf path/to/submodule
 ```
 Remove the submodule entry from the .gitmodules file. Open the file in your text editor and delete the corresponding section.
+## Update the submodule to the latest commit from the fork:
+* Navigate to the root directory of your Git repository:
+```bash
+cd /path/to/your/repo
+```
+```bash
+git submodule update --remote --merge
+```
 ## Fork:
 * https://www.atlassian.com/git/tutorials/git-forks-and-upstreams
 
